@@ -1,0 +1,13 @@
+Questions and Answers
+------------------------
+
+        1   In the file B-3.c, what values  can variable `a' take? Will the `if'
+            condition [a  < 4] ever  be true?  Inspect the file  B-3.c.*.vrp1 to
+            analyze the dump.
+
+	Ans.  	   We are initializing value of variable "a" to integer 4, at start 
+	    of for loop itself according to for loop syntax in C programming.According,
+	    to Program written, "if" block has condition as "a < 4", which never be true
+ 	    as we are assigning value of "a" to integer 4 and incrementing after every 
+            single iteration.So, always "else" part is executed.
+

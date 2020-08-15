@@ -1,0 +1,26 @@
+
+Questions and Answers
+----------------------
+
+        1   The body  of AddTwo(x)  seems to  be inlined into  the call  of main
+            rendering the function useless (nobody else is calling it). Then why
+            is the definition of AddTwo(x) still there all the way till the last
+            pass (B-1.c.*.optimized)?
+
+	Ans.  	  A function declaration tells the compiler about a function name 
+	    and how to call the function. Function declaration is required when you
+            define a function in one source file and you call that function in another 
+	    file. Same might happen in this case, As function defination is exists
+	    the Function name AddTwo(X) might call from another file.In such case, we
+	    should declare the function at the top of the file calling the function.
+
+        2   Is there any way to get rid of it?
+	
+	Ans.  	 Functions have scope as well, though their scope is generally larger 
+	    than that of most variables.Functions can have global, namespace, class or 
+	    local (within another function) scope.In the C programming language, static 
+	    is used with global variables and functions to set their scope to the containing 
+	    file. In local variables, static is used to store the variable in the statically
+	    allocated memory instead of the automatically allocated memory.So, when function 
+	    was declared with the "static" keyword it will available to Files.
+

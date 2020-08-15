@@ -1,0 +1,62 @@
+Questions and Answers
+----------------------
+
+        1   How  do the  declarations  look in  the  GIMPLE? Specifically,  what
+            happens to multiple  variables declared and initialized  on the same
+            line? What happens to global declaration [int Z]?
+       
+	Ans.       There is nothing like variable having global scope Every line 
+	    on dislay have their local variable declaration scope. Initializers 
+            assigned to simple declaration at the start(top) and further process 
+            proceed in the body of code.
+
+        2   How are complex  expressions such as [c  = a * b +  25] broken down?
+            Can you  determine a  rule as  to when  temporary variables  will be
+            introduced?
+	
+	Ans.	    In computer science, a tree is a widely used abstract data type
+            that simulates a hierarchical tree structure, with a root value and 
+            subtrees of children with a parent node, represented as a set of linked 
+            nodes. GIMPLE is supported to have at most one operation at a time. 
+            Expression more than one operation solved with the help of precedence 
+            order and temporary value storage. GIMPLE ststements are considered as 
+            "TREE" abstract data type, where each internal node(not leaf node) 
+            represents either local or temporary variable.
+
+        3   How are  floats/doubles represented in  GIMPLE? What happens  when a
+            float/double is assigned to an integer in [Z = r]?
+	
+	Ans.        In terms of number of precision it can be stated as double has
+            64 bit precision for floating point number, double has 15 decimal digits
+            of precision. Float?doubles both are denoted GIMPLE in Scientific way. 
+            Any Implicit assignments to integers are responsible for explicit casts 
+            in GIMLE.
+
+        4   How  are reads/writes  to the  global variable  Z performed?  Why is
+            there a temporary introduced  for the statement [Z = Z  + 1] but not
+            for the statements [q = Z] or [Z = p]?
+
+	Ans.        Reading/writing  from/to global  variables  requires  a memory  load
+            or  store operation.  As  GIMPLE  statements can  have  at most  one
+            operation, the only type of  statements involving globals are of the
+            form "GLOBAL  = LOCAL" or  "LOCAL =  GLOBAL". This is  because while
+            local variables  of a  procedure can  reside entirely  in registers,
+            every read/write  to global variables  must refer to main  memory as
+            they can be accessed by  other entities (threads, I/O devices, etc).
+            Hence,  any operation  on global  variables (such  as the  increment
+            shown  in this  example)  has  to go  through  an  indirection of  a
+            temporary version of the global  inside registers (as this temporary
+            value is  not visible to  I/O devices, etc). Global  temporaries are
+            named similar to the global variable but with a numeric suffix.
+
+            
+Optional Problem
+----------------
+
+        Try to understand the underlying GIMPLE representation by looking at the
+        RAW dumps:
+
+        Compilation : gcc-4.7.2 -c -fdump-tree-gimple-raw A-1.c
+        View result : vi -O A-1.c A-1.c.*.gimple
+
+

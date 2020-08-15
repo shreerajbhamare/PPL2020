@@ -1,0 +1,32 @@
+Questions
+---------
+
+        1   Identify the basic blocks that correspond  to the while loop. How is
+            the GIMPLE for a while loop different from simple if-else jumps?
+	
+	Ans.	   The syntax of a while loop in C programming language is - 
+	    while(condition) { statement(s); } Here, statement(s) may be a single 
+	    statement or a block of statements. The condition may be any expression, 
+	    and true is any nonzero value. The loop iterates while the condition is true.
+	    So, if we observed carefully, the while loop itself executed as if-else 
+	    conditional statements such as in above if sun<100(sum<=99) then sum=sum*2  
+	    (Again this is done by using local variable) and control pass backword
+	    (if-statement)else control pass to further block of code."goto" keyword 
+	    in GIMPLE uses to pass the control 
+
+        2   Identify the  basic blocks  for the nested  for-loop. You  should be
+            able  to identify  intializers, conditions  and increments  for each
+            loop as  well as  the shared  inner body.  Is there  really anything
+            special about a for-loop as compared to a while-loop?
+
+	Ans. 	  For loop statement allows you to update any loop control variables.
+	    If it is true, the loop executes and the process repeats itself (body 
+            of loop, then increment step, and then again condition). After the condition
+            becomes false, the 'for' loop terminates. A for loop is same as while-loop 
+            as it also consist of if-else conditional blocks but differ in method of 
+            sepration of initializer declaration. In For loop, initializer are seprated 
+            at initial blocks only and increment part takes place at the end of single 
+            loop iteration and control again get passed to conditional statement to check 
+            certain condition.
+
+

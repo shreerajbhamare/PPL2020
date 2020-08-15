@@ -1,0 +1,18 @@
+
+Questions and Answers
+----------------------
+
+        1   What will happen if "a = a + N" is replaced by "a = a + 1"?
+
+	Ans.  	 Here, Again th PHI node merging concept reappears. PHI node 
+	    responsible for merging of variable assignment with different paths.
+	    If we done the changes and rerun the GIMPLE code..we will get following 
+	    important statement as:
+             # i_1 = PHI <i_4(2), i_6(3)>                                               
+ 	     # a_2 = PHI <a_3(2), a_5(3)>  
+	    Due to this, value of variables "i" and "a" changes after each iteration.
+	    As, Loop executes 4 times four get added to initial value of varianle "a".
+	    (As, One is added to "a" after each iteration.)Finally, we get value of "a"
+	    as 10.
+
+

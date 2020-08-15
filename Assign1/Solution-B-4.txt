@@ -1,0 +1,28 @@
+Questions and Answers
+----------------------
+
+        1   How many  times is the expression  (a + c) computed  in the original
+            code (as seen in the SSA pass)? What about after the FRE pass?
+	Ans.  	  If we took glance at our GIMPLE file created, it showing us two
+	    computations get calculated.Instead of this in FRE pass each line of 
+	    execution get stored by defaut, so that when result of previous computaion
+  	    needed, if get it directly rather doing computation again as like case 
+     	    mentioned above. 
+
+        2   Have  there been  any more  optimizations  after FRE?  How will  you
+            check?
+
+	Ans.  	  After execution of source code get complied, various types of
+ 	    files get generated automatically. Simillarly, B-4.c.*.optimized also
+            get generated. if it having same output as our GIMPLE file, then our 
+	    code is already optimized. No, further optimization can possible.
+
+        3   Why did  we have  to put a  "return b" in  this assignment?  What if
+            "return b" is changed to "return 0"? Will it make any difference?
+
+	Ans.        We return "b" this time, because we process on variable b.
+	    Instead, if we return "0" directly, compiler simply return "0",So there is
+            no meaning of making computation and storing result in variable "b".So, 
+	    rather computing value for variable "b", Compiler simply get end of the code.
+ 	    That is the main reason we return integer variable "b". 
+

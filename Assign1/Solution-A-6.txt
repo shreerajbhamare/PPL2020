@@ -1,0 +1,35 @@
+Que.       The following  is a CFG  dump of a somewhat  meaningful little program.  Can you
+        predict the output of  the program just  by looking at  the GIMPLE  dump? Well,
+        maybe or  maybe not. But your  task is to  find the corresponding C  program for
+         which gcc-4.7.2 generated this GIMPLE dump.
+      
+Answer:
+
+
+-----------------------------------------
+A-6 Sorce Code in "C" for above GIMPLE
+-----------------------------------------
+#include <stdio.h>
+
+int main()
+{
+    int i, j;
+    for(i = 2; i <= 100; i++) {
+        for(j = 2; j < i; j++) {
+            if(i % j == 0)
+                break;
+        }
+        if(i == j) {
+            printf("%d \n", i);
+        }
+    }
+    return 0;            
+}
+----------------------------------------------
+Explanation:- As code involves 2 if-else conditional statements,
+	it is pretty sure that our sorce code involve of two for loop..
+	(One in nested)
+-----------------------------------------------
+Output- After Execution of above source code we will get list of prime
+	numbers upto 100 as limit of "i" allowed to be 100. 
+-----------------------------------------------

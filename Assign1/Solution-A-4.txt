@@ -1,0 +1,32 @@
+-----------------------
+Questions and Answers
+----------------------
+
+        1   How is array declaration and initialization handled?
+	
+	Ans.	  An array is a collection of data items, all of the same type, accessed
+	    using a common name. A one-dimensional array is like a list; A two dimensional
+            array is like a table; The C language places no limits on the number of 
+            dimensions in an array, though specific implementations may. During array 
+            declaration, body of code get splitted into various block of code. Array 
+            declaration resembles with the scalar initialization. This array declaration 
+            done according to one operation per statement as we seen it through GIMPLE. .
+
+        2   Why does the statement a[i] = b[i] get broken down to two steps with
+            an intermediate temporary?
+
+	Ans. 	  "One Operation per Statement", this is the GIMPLE's policy.As, a[i]=b[i]
+	    includes reading of data of b[i] and then storing the same value at the position 
+	    of a[i] involves two operation.This break the Golden Rule of GIMPLE,So a[i]=b[i]
+	    broken down in two step.This assignment done by temporary variable having local
+	    scope.
+
+        3   Why are there CLOBBER statements at the end?
+	
+	Ans. 	  "CLOBBER" tells the compiler that the assembly code might modify any memory,
+	    not just variables that are included in the output constraints. CLOBBER is the 
+	    keyword in GIMPLE used as adresse-escape variable.This notify the compiler thet 
+	    address-escpaed scope of the variable declared earlier is ended completely.
+
+
+
